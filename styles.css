@@ -1353,3 +1353,75 @@ body.dark-mode .theme-btn {
   /* Fallback: if you prefer stacked nav instead of scroll, add the class 'wrap' to .nav-links */
   .nav-links.wrap { flex-wrap: wrap; justify-content: center; gap: 8px; }
 }
+
+/* Additional mobile header & projects fixes: align actions and ensure project padding */
+@media (max-width: 768px) {
+  /* Use a compact header row where nav and actions share one line */
+  .topbar-inner {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+    margin-right: 8px;
+  }
+
+  /* nav grows and becomes horizontally scrollable; actions sit to its right */
+  .nav-links {
+    flex: 1 1 auto;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding: 6px 4px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    font-size: 0.88rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    scroll-snap-align: center;
+  }
+
+  .action-group {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .action-group .theme-btn,
+  .action-group .btn {
+    height: 40px;
+    width: auto;
+    padding: 6px 10px;
+  }
+
+  /* Project grid padding + ensure cards don't overflow */
+  .project-grid {
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  .project-card {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Keep the topbar visually premium: subtle divider and spacing */
+  .topbar {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(180deg, rgba(8,12,30,0.88), rgba(8,12,30,0.72));
+    padding: 6px 0;
+  }
+}
