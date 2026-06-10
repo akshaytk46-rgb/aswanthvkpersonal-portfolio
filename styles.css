@@ -1208,220 +1208,211 @@ body.dark-mode .theme-btn {
 }
 
 @media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .topbar {
+    border-bottom: none;
+    background: transparent;
+    padding: 10px 0 4px;
+  }
+
   .topbar-inner {
     flex-direction: column;
-    gap: 16px;
-    padding: 16px 0;
+    align-items: stretch;
+    gap: 14px;
+    padding: 14px 0;
+    background: rgba(9, 15, 34, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16);
   }
-  .nav-links {
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .section-card {
-    padding: 30px 20px;
-    border-radius: 20px;
-  }
-  .hero-copy h1 {
-    font-size: 2.8rem;
-  }
-  .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .timeline {
-    padding-left: 20px;
-  }
-  .timeline-marker {
-    left: -30px;
-  }
-  .timeline-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .timeline-when {
-    align-self: flex-start;
-  }
-  .timeline-content {
-    padding: 20px;
-  }
-}
 
-@media (max-width: 480px) {
-  .hero-image-container {
-    width: 250px;
-    height: 250px;
+  .brand {
+    width: 100%;
+    text-align: center;
   }
-  .hero-copy h1 {
-    font-size: 2.2rem;
-  }
+
   .brand-name {
     font-size: 1.15rem;
   }
-}
 
-/* Mobile-specific refinements: compact nav, badge padding, scaled typography */
-@media (max-width: 768px) {
-  .topbar-inner {
-    flex-direction: column;
-    gap: 10px;
-    padding: 12px 0;
-    align-items: stretch;
+  .brand-role {
+    font-size: 0.75rem;
+    line-height: 1.4;
   }
 
-  /* Make nav a single-line, horizontally scrollable row on small screens */
   .nav-links {
+    width: 100%;
     display: flex;
-    gap: 10px;
-    padding: 6px 6px;
+    gap: 8px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    flex-wrap: nowrap; /* avoid wrapping into two rows */
-    width: 100%;
+    scroll-snap-type: x proximity;
+    padding: 10px 10px;
     justify-content: flex-start;
+    flex-wrap: nowrap;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    margin: 0;
   }
 
   .nav-links a {
     flex: 0 0 auto;
     padding: 8px 12px;
-    font-size: 0.88rem;
+    font-size: 0.84rem;
     border-radius: 999px;
     scroll-snap-align: center;
     white-space: nowrap;
+    background: rgba(255, 255, 255, 0.06);
   }
 
-  /* Tidy scrollbar appearance */
-  .nav-links::-webkit-scrollbar { height: 8px; }
-  .nav-links::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 6px; }
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(91, 140, 255, 0.16);
+  }
 
-  /* Prevent eyebrow/badge text from overflowing */
+  .nav-links::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .nav-links::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 6px;
+  }
+
+  .action-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 8px 10px;
+  }
+
+  .action-group .theme-btn,
+  .action-group .btn {
+    min-width: 0;
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+  }
+
+  .theme-btn {
+    width: 44px;
+  }
+
+  .section-card {
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.14);
+  }
+
+  .hero-section {
+    gap: 32px;
+    padding: 30px 0 20px;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-image-container {
+    width: 190px;
+    height: 190px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .hero-image-inner {
+    border: 2px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hero-copy h1 {
+    font-size: 2.2rem;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+
+  .hero-copy p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .timeline {
+    padding-left: 20px;
+  }
+
+  .timeline-marker {
+    left: -30px;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .timeline-when {
+    align-self: flex-start;
+  }
+
+  .timeline-content {
+    padding: 20px;
+  }
+
   .eyebrow {
     padding: 6px 12px;
     font-size: 0.78rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%;
-    box-sizing: border-box;
   }
 
-  /* Scale down hero typography and body copy for mobile */
-  .hero-copy h1 {
-    font-size: clamp(1.8rem, 6.2vw, 2.4rem);
-    line-height: 1.06;
-    margin-bottom: 10px;
-  }
-
-  .hero-copy p {
-    font-size: 0.98rem;
-    line-height: 1.45;
-    margin-bottom: 18px;
-    max-width: 100%;
-  }
-
-  /* Slightly smaller buttons for comfortable fit */
-  .btn, .btn-primary, .btn-outline {
-    padding: 8px 14px;
-    font-size: 0.95rem;
-  }
-
-  /* Reduce hero image size on smaller phones */
-  .hero-image-container {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-  }
-
-  .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  /* Keep brand role/badge readable */
-  .brand { align-items: center; text-align: center; }
-  .brand-role {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 0 6px;
-    font-size: 0.72rem;
-  }
-
-  /* Fallback: if you prefer stacked nav instead of scroll, add the class 'wrap' to .nav-links */
-  .nav-links.wrap { flex-wrap: wrap; justify-content: center; gap: 8px; }
-}
-
-/* Additional mobile header & projects fixes: align actions and ensure project padding */
-@media (max-width: 768px) {
-  /* Use a compact header row where nav and actions share one line */
-  .topbar-inner {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 15px;
-  }
-
-  .brand {
-    flex: 0 0 auto;
-    margin-right: 8px;
-  }
-
-  /* nav grows and becomes horizontally scrollable; actions sit to its right */
-  .nav-links {
-    flex: 1 1 auto;
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    padding: 6px 4px;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .nav-links a {
-    flex: 0 0 auto;
-    padding: 8px 10px;
-    font-size: 0.88rem;
-    border-radius: 999px;
-    white-space: nowrap;
-    scroll-snap-align: center;
-  }
-
-  .action-group {
-    flex: 0 0 auto;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .action-group .theme-btn,
-  .action-group .btn {
-    height: 40px;
-    width: auto;
-    padding: 6px 10px;
-  }
-
-  /* Project grid padding + ensure cards don't overflow */
   .project-grid {
-    padding: 0 15px;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
     box-sizing: border-box;
   }
 
   .project-card {
     max-width: 100%;
+    width: 100%;
     box-sizing: border-box;
   }
+}
 
-  /* Keep the topbar visually premium: subtle divider and spacing */
-  .topbar {
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    background: linear-gradient(180deg, rgba(8,12,30,0.88), rgba(8,12,30,0.72));
-    padding: 6px 0;
+@media (max-width: 480px) {
+  .hero-image-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-copy h1 {
+    font-size: 1.85rem;
+  }
+
+  .hero-copy p {
+    font-size: 0.93rem;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
   }
 }
