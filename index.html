@@ -283,6 +283,7 @@
       let maxConnection = isMobile ? 80 : 130;
       let canvasWidth = window.innerWidth;
       let canvasHeight = window.innerHeight;
+      let animationFrameId = null;
 
       const resizeCanvas = () => {
         if (!canvas || !ctx) return;
@@ -356,16 +357,34 @@
       };
 
       const animateCanvas = () => {
+        if (isMobile) {
+          if (canvas) canvas.style.display = 'none';
+          animationFrameId = null;
+          return;
+        }
+
+        if (canvas) canvas.style.display = 'block';
         drawBackground();
-        requestAnimationFrame(animateCanvas);
+        animationFrameId = requestAnimationFrame(animateCanvas);
       };
 
       const updateMobileMode = () => {
         isMobile = mobileMedia.matches;
         particleCount = isMobile ? 18 : 70;
         maxConnection = isMobile ? 80 : 130;
+
         if (canvas) {
           canvas.style.opacity = isMobile ? '0.28' : '0.58';
+          canvas.style.display = isMobile ? 'none' : 'block';
+        }
+
+        if (isMobile && animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+
+        if (!isMobile && !animationFrameId) {
+          animateCanvas();
         }
       };
 
@@ -391,7 +410,6 @@
       updateMobileMode();
       resizeCanvas();
       createParticles();
-      animateCanvas();
 
       if (heroSection && heroCopy && heroImage) {
         heroSection.addEventListener('mousemove', (event) => {

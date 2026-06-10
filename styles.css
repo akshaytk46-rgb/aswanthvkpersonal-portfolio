@@ -1224,11 +1224,13 @@ body.dark-mode .theme-btn {
   }
 
   .topbar-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand actions"
+      "nav nav";
     gap: 12px;
+    align-items: center;
     padding: 14px 15px;
     background: rgba(9, 15, 34, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1237,9 +1239,10 @@ body.dark-mode .theme-btn {
   }
 
   .brand {
-    order: 2;
+    grid-area: brand;
     width: 100%;
-    text-align: center;
+    text-align: left;
+    justify-self: start;
   }
 
   .brand-name {
@@ -1252,13 +1255,13 @@ body.dark-mode .theme-btn {
   }
 
   .nav-links {
-    order: 1;
-    flex: 1 1 auto;
-    min-width: 0;
+    grid-area: nav;
+    width: 100%;
     display: flex;
     gap: 8px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
     scroll-snap-type: x proximity;
     padding: 10px 10px;
     justify-content: flex-start;
@@ -1267,6 +1270,12 @@ body.dark-mode .theme-btn {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 999px;
     margin: 0;
+    min-width: 0;
+  }
+
+  .network-canvas,
+  body::after {
+    display: none;
   }
 
   .nav-links a {
@@ -1294,7 +1303,7 @@ body.dark-mode .theme-btn {
   }
 
   .action-group {
-    order: 1;
+    grid-area: actions;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -1302,6 +1311,7 @@ body.dark-mode .theme-btn {
     align-items: center;
     padding: 0 8px 10px;
     min-width: 0;
+    justify-self: end;
   }
 
   .action-group .theme-btn,
@@ -1323,20 +1333,32 @@ body.dark-mode .theme-btn {
   }
 
   .hero-section {
-    gap: 32px;
-    padding: 30px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 42px 0 20px;
+    perspective: none;
   }
 
   .hero-copy {
+    width: 100%;
+    max-width: 680px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
+  .hero-image {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+
   .hero-image-container {
-    width: 190px;
-    height: 190px;
+    width: 220px;
+    height: 220px;
     margin: 0 auto;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.04);
@@ -1362,12 +1384,26 @@ body.dark-mode .theme-btn {
   }
 
   .hero-image {
-    order: 2;
+    width: 240px;
+    justify-content: center;
+  }
+
+  .hero-image-container {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .hero-image-inner {
+    border: 2px solid rgba(255, 255, 255, 0.08);
   }
 
   .hero-stats {
     grid-template-columns: 1fr;
     gap: 14px;
+    width: 100%;
   }
 
   .timeline {
