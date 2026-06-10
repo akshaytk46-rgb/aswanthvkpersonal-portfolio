@@ -276,9 +276,11 @@
       const canvas = document.getElementById('networkCanvas');
       const ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
       const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      const mobileMedia = window.matchMedia('(max-width: 768px)');
+      let isMobile = mobileMedia.matches;
       const particles = [];
-      const particleCount = 70;
-      const maxConnection = 130;
+      let particleCount = isMobile ? 18 : 70;
+      let maxConnection = isMobile ? 80 : 130;
       let canvasWidth = window.innerWidth;
       let canvasHeight = window.innerHeight;
 
@@ -334,17 +336,19 @@
           ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
 
-          for (let j = index + 1; j < particles.length; j += 1) {
-            const other = particles[j];
-            const dx = particle.x - other.x;
-            const dy = particle.y - other.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < maxConnection) {
-              ctx.globalAlpha = 0.08;
-              ctx.beginPath();
-              ctx.moveTo(particle.x, particle.y);
-              ctx.lineTo(other.x, other.y);
-              ctx.stroke();
+          if (!isMobile) {
+            for (let j = index + 1; j < particles.length; j += 1) {
+              const other = particles[j];
+              const dx = particle.x - other.x;
+              const dy = particle.y - other.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              if (distance < maxConnection) {
+                ctx.globalAlpha = 0.08;
+                ctx.beginPath();
+                ctx.moveTo(particle.x, particle.y);
+                ctx.lineTo(other.x, other.y);
+                ctx.stroke();
+              }
             }
           }
         });
@@ -356,16 +360,35 @@
         requestAnimationFrame(animateCanvas);
       };
 
-      window.addEventListener('mousemove', (event) => {
-        mouse.x = event.clientX;
-        mouse.y = event.clientY;
-      });
+      const updateMobileMode = () => {
+        isMobile = mobileMedia.matches;
+        particleCount = isMobile ? 18 : 70;
+        maxConnection = isMobile ? 80 : 130;
+        if (canvas) {
+          canvas.style.opacity = isMobile ? '0.28' : '0.58';
+        }
+      };
+
+      if (!isMobile) {
+        window.addEventListener('mousemove', (event) => {
+          mouse.x = event.clientX;
+          mouse.y = event.clientY;
+        });
+      }
+
+      if (mobileMedia.addEventListener) {
+        mobileMedia.addEventListener('change', updateMobileMode);
+      } else if (mobileMedia.addListener) {
+        mobileMedia.addListener(updateMobileMode);
+      }
 
       window.addEventListener('resize', () => {
+        updateMobileMode();
         resizeCanvas();
         createParticles();
       });
 
+      updateMobileMode();
       resizeCanvas();
       createParticles();
       animateCanvas();

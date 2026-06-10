@@ -78,6 +78,9 @@ body {
   overflow-x: hidden;
   position: relative;
   transition: background 0.4s ease, color 0.4s ease;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
+  transform: translateZ(0);
 }
 
 /* Background Gradients & Mesh */
@@ -1221,17 +1224,20 @@ body.dark-mode .theme-btn {
   }
 
   .topbar-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
-    padding: 14px 0;
-    background: rgba(9, 15, 34, 0.88);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 15px;
+    background: rgba(9, 15, 34, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 32px;
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16);
   }
 
   .brand {
+    order: 2;
     width: 100%;
     text-align: center;
   }
@@ -1246,7 +1252,9 @@ body.dark-mode .theme-btn {
   }
 
   .nav-links {
-    width: 100%;
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
     display: flex;
     gap: 8px;
     overflow-x: auto;
@@ -1286,12 +1294,14 @@ body.dark-mode .theme-btn {
   }
 
   .action-group {
-    width: 100%;
+    order: 1;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
     padding: 0 8px 10px;
+    min-width: 0;
   }
 
   .action-group .theme-btn,
@@ -1340,6 +1350,7 @@ body.dark-mode .theme-btn {
     font-size: 2.2rem;
     line-height: 1.05;
     margin-bottom: 14px;
+    will-change: transform;
   }
 
   .hero-copy p {
@@ -1347,6 +1358,11 @@ body.dark-mode .theme-btn {
     line-height: 1.55;
     margin-bottom: 20px;
     max-width: 100%;
+    will-change: opacity;
+  }
+
+  .hero-image {
+    order: 2;
   }
 
   .hero-stats {
@@ -1385,7 +1401,7 @@ body.dark-mode .theme-btn {
   }
 
   .project-grid {
-    padding: 0;
+    padding: 0 15px;
     margin: 0;
     max-width: 100%;
     box-sizing: border-box;
@@ -1395,6 +1411,7 @@ body.dark-mode .theme-btn {
     max-width: 100%;
     width: 100%;
     box-sizing: border-box;
+    will-change: transform, opacity;
   }
 }
 
