@@ -16,6 +16,37 @@ const addScrollProgress = () => {
   return progress;
 };
 
+const forceMobileDarkMode = () => {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const themeButtons = document.querySelectorAll('.theme-btn');
+
+  if (isMobile) {
+    body.classList.add('dark-mode');
+    body.dataset.mobileDarkOnly = 'true';
+    themeButtons.forEach((button) => {
+      button.setAttribute('aria-disabled', 'true');
+      button.setAttribute('tabindex', '-1');
+    });
+    return;
+  }
+
+  delete body.dataset.mobileDarkOnly;
+  themeButtons.forEach((button) => {
+    button.removeAttribute('aria-disabled');
+    button.removeAttribute('tabindex');
+  });
+};
+
+document.addEventListener('click', (event) => {
+  if (!body.dataset.mobileDarkOnly) return;
+  const themeButton = event.target.closest('.theme-btn');
+  if (!themeButton) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+  body.classList.add('dark-mode');
+}, true);
+
 const addCursorGlow = () => {
   if (prefersReducedMotion || window.innerWidth < 769 || document.querySelector('.cursor-glow')) return;
 
@@ -224,6 +255,7 @@ const handleScroll = () => {
 };
 
 document.documentElement.classList.add('js-ready');
+forceMobileDarkMode();
 addAmbientBackground();
 lockHeaderToTop();
 addCursorGlow();
@@ -238,4 +270,7 @@ animateStats();
 initSmoothAnchors();
 
 window.addEventListener('scroll', handleScroll, { passive: true });
-window.addEventListener('resize', setActiveNav);
+window.addEventListener('resize', () => {
+  forceMobileDarkMode();
+  setActiveNav();
+});
