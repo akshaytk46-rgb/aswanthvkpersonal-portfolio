@@ -1414,6 +1414,82 @@ html body:not(.dark-mode) .ambient-bg span {
     padding-top: 42px !important;
     padding-bottom: 42px !important;
   }
+
+  html body:not(.dark-mode) .topbar {
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    z-index: 100 !important;
+  }
+}
+
+/* Mobile: day mode uses the same layout behavior as dark mode. */
+@media (max-width: 768px) {
+  html body .topbar {
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 100 !important;
+  }
+
+  html body main,
+  html body .page,
+  html body .wrapper,
+  html body .site-main,
+  html body .content,
+  html body .main-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  html body .hero-section,
+  html body main > section:first-of-type,
+  html body #home {
+    margin-top: 0 !important;
+    padding-top: 42px !important;
+    padding-bottom: 42px !important;
+    min-height: auto !important;
+    align-items: center !important;
+  }
+
+  html body .topbar-inner {
+    align-items: center !important;
+  }
+
+  html body .nav-links {
+    order: 3 !important;
+    width: 100% !important;
+  }
+}
+
+/* Mobile day mode must scroll exactly like the dark-mode header. */
+@media (max-width: 768px) {
+  html body:not(.dark-mode) .topbar,
+  html body:not(.dark-mode) .topbar.is-scrolled {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  html body:not(.dark-mode) main,
+  html body:not(.dark-mode) .page,
+  html body:not(.dark-mode) .wrapper,
+  html body:not(.dark-mode) .site-main,
+  html body:not(.dark-mode) .content,
+  html body:not(.dark-mode) .main-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
 }
 
 /* Final day-mode top alignment fix */
